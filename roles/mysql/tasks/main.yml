@@ -40,7 +40,7 @@
 
 - name: Docker compose up
   shell:
-    cmd:  docker compose up mysql -d --pull "always" --force-recreate
+    cmd:  docker compose up mysql -d --pull "always" 
     chdir: "{{ mysql_directory }}"
     
 
