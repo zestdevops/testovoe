@@ -1,4 +1,4 @@
 ---
 # handlers file for nginx
 - name: Restart nginx container
-  command: docker restart nginx
+  command: docker compose restart nginx
