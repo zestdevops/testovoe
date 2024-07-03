@@ -1,0 +1,52 @@
+---
+# tasks file for nginx
+- name: Create dir
+  ansible.builtin.file:
+    path: "{{ php_directory }}"
+    state: directory
+    mode: 0755
+
+- name: Apt update
+  ansible.builtin.apt:
+    update_cache: yes
+
+- name: Install docker
+  apt:
+    name: docker.io 
+    state: present
+
+- name: Install docker compose
+  apt:
+    name: docker-compose-v2
+    state: present
+
+- name: Enable docker on VM
+  ansible.builtin.systemd:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: Move docker-compose.yml
+  ansible.builtin.template:
+    src: docker-compose.yml.j2
+    dest: "{{ php_directory }}docker-compose.yml"
+    mode: 0644
+
+- name: Move Dockerfile
+  ansible.builtin.template:
+    src: Dockerfile.j2
+    dest: "{{ php_directory }}Dockerfile"
+    mode: 0644
+
+- name: Move index.php
+  ansible.builtin.template:
+    src: index.php
+    dest: "{{ php_directory }}index.php"
+    mode: 0644
+
+- name: Docker compose up
+  shell:
+    cmd:  docker compose up php -d --pull "always" --force-recreate
+    chdir: "{{ php_directory }}"
+    
+

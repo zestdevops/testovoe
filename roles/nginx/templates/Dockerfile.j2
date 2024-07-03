@@ -1,0 +1,7 @@
+FROM nginx:stable-alpine3.19-slim
+WORKDIR {{ nginx_directory }}
+RUN echo "Hello, World!" > index.html
+EXPOSE 80
+
+
+

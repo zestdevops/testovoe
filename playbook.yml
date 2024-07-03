@@ -1,0 +1,14 @@
+- name: Deploy nginx
+  hosts: nginx
+  roles:
+    - nginx
+
+- name: Deploy php
+  hosts: php
+  roles:
+    - php
+- name: Deploy nginx
+  hosts: mysql
+  roles:
+    - mysql
+

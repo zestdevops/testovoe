@@ -1,0 +1,5 @@
+mysql_pass: testpass!@3
+mysql_base: mysql_test
+mysql_user: test
+mysql_directory: /opt/mysql
+

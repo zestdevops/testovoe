@@ -1,0 +1,5 @@
+FROM php:8.3.8-fpm
+COPY --chown=www-data --chmod=777 index.php .
+EXPOSE 9000
+
+

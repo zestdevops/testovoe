@@ -1,0 +1,12 @@
+all: 
+  children: 
+    nginx: 
+      hosts:
+        10.129.0.16:
+    php:
+      hosts:
+        10.129.0.16:
+    mysql:
+      hosts:
+        10.129.0.16:
+

@@ -1,0 +1,6 @@
+ansible_connection: ssh
+ansible_user: ansible
+ansbile_ssh_pass: ansible
+php_name: php
+nginx_name: nginx
+mysql_name: mysql

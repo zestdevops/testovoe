@@ -1,0 +1,46 @@
+---
+# tasks file for nginx
+- name: Create dir
+  ansible.builtin.file:
+    path: "{{ mysql_directory }}"
+    state: directory
+    mode: 0755
+
+- name: Apt update
+  ansible.builtin.apt:
+    update_cache: yes
+
+- name: Install docker
+  apt:
+    name: docker.io 
+    state: present
+
+- name: Install docker compose
+  apt:
+    name: docker-compose-v2
+    state: present
+
+- name: Enable docker on VM
+  ansible.builtin.systemd:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: Move docker-compose.yml
+  ansible.builtin.template:
+    src: docker-compose.yml.j2
+    dest: "{{ mysql_directory }}/docker-compose.yml"
+    mode: 0644
+
+- name: Move Dockerfile
+  ansible.builtin.template:
+    src: Dockerfile.j2
+    dest: "{{ mysql_directory }}/Dockerfile"
+    mode: 0644
+
+- name: Docker compose up
+  shell:
+    cmd:  docker compose up mysql -d --pull "always" --force-recreate
+    chdir: "{{ mysql_directory }}"
+    
+
