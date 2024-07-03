@@ -7,7 +7,7 @@
   hosts: php
   roles:
     - php
-- name: Deploy nginx
+- name: Deploy mysql
   hosts: mysql
   roles:
     - mysql
