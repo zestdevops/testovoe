@@ -46,7 +46,7 @@
 
 - name: Docker compose up
   shell:
-    cmd:  docker compose up nginx -d --pull "always" --force-recreate
+    cmd:  docker compose up nginx -d --pull "always" 
     chdir: "{{ nginx_directory }}"
     
 
